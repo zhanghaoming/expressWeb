@@ -5,11 +5,7 @@ var mysql=require('mysql');
 
 
 router.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!'});
-});
-
-router.get('/list', function(req, res){
-   res.render('list',
+  res.render('login',
    {
         title:'网站首页',
         movies:
@@ -41,8 +37,5 @@ router.get('/list', function(req, res){
         ]
     });
 });
-
-
-
 
 module.exports = router;

@@ -2,15 +2,14 @@
 /* GET users listing. */
 var express=require('express');
 var router=express.Router();
-
-var mysql=require('mysql');
+/*var mysql = require('mysql');
 var connection = mysql.createConnection({
-	host : 'localhost' ,
-	user : 'root' ,
-	password : 'zxcvbnm123' ,
-	database : 'test',
-	port:'3306'
-});
+host : 'localhost' ,
+user : 'root' ,
+password : 'zxcvbnm123' ,
+database : 'test',
+port:'3306'
+});*/
 
 router.post('/login',function(req,res)
 {
@@ -20,9 +19,9 @@ router.post('/login',function(req,res)
 		console.log(key);
 		console.log(req.cookies[key]);
 	}
-	console.log(escape(data.name));
+	console.log(req.body);
 	var selectSql = "select code from codestore where user="+"'"+escape(data.name)+"'";
-	connection.query(selectSql,function(err,result,fields){
+	globalConnection.query(selectSql,function(err,result,fields){
 		if(err){
 	  		console.log('getUserbyUsername err:' + err) ;
 	  		return ;
@@ -34,12 +33,11 @@ router.post('/login',function(req,res)
               console.log("%s", result[i].code);
           }
           if(result[0]['code']==req.body.code)
-          	res.send("ok");
+          	res.render('index', { title: 'Hey', message: 'Hello there!'});
           else
           	res.send("fuck");
 		}   
 	}) ;
-	connection.end();
 })
 
 module.exports = router;

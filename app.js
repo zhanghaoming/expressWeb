@@ -9,8 +9,17 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+app.use(express.static('public'));
 
 var mysql = require('mysql');
+global.globalConnection=mysql.createConnection({
+	host : 'localhost' ,
+	user : 'root' ,
+	password : 'zxcvbnm123' ,
+	database : 'test',
+	port:'3306'
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -25,41 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use(require('./routes/list'));
-
-/*app.get('/list', function(req, res){
-   res.render('list',
-   {
-        title:'网站首页',
-        movies:[
-            {
-            _id:1,
-            title:"海绵宝宝3D",
-            poster: 'http://img31.mtime.cn/mg/2015/11/17/094620.70277104_170X256X4.jpg'
-            },
-            {
-            _id:2,
-            title:"星际迷航3",
-            poster:'http://img31.mtime.cn/mg/2016/09/01/143653.31713698_170X256X4.jpg'
-            },
-            {
-            _id:3,
-            title:"惊天绑架团",
-            poster:'http://img31.mtime.cn/mg/2016/07/12/091819.79722823_170X256X4.jpg'
-            },
-            {
-            _id:4,
-            title:"爱宠大机密",
-            poster:'http://img31.mtime.cn/mg/2016/06/21/093149.12209704_170X256X4.jpg'
-            },
-            {_id:5,
-            title:"冰川时代4",
-            poster:'http://img31.mtime.cn/mt/2012/07/19/131845.38602455_170X256X4.jpg'
-            }
-        ]
-    });
-});*/
-
+app.use(require('./routes/login'));
+app.use(require('./routes/register'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
