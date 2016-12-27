@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <script type="text/javascript">
+		function cookiesubmit()
+		{
+			var xhr=new XMLHttpRequest();
+			document.cookie="user="+document.getElementById("name").value;
+			document.cookie="code="+document.getElementById("code").value;
+			xhr.send();
+		}
+  </script>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <form id="text_form" method="post" action="/login"> 
+	    <input type="text" id="name" name="name"></ br> 
+	    <input type="text" id="code" name="code"></ br> 
+	    <input class="submit" type="submit" value="submit" onclick="cookiesubmit()">
+    </form>
+    <div id="hh"></div>
+    <script type="text/javascript">
+		var txt='<%- JSON.stringify(movies)%>';
+		var result = JSON.parse(txt);
+		var innerhtml="<br>";
+		for (var i=0;i<result.length;i++)
+		{
+			innerhtml=innerhtml + result[i].title+"<br>";
+		}
+		document.getElementById("hh").innerHTML = innerhtml; 
+	</script>
+  </body>
+</html>

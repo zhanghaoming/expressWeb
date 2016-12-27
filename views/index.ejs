@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="D:\jquery-3.1.1.min.js">
+	</script>
+	<script>
+	$(document).ready(function(){
+	  $("#b").click(function(){
+	    $("p").hide();
+	  });
+	});
+	</script>
+  </head>
+
+  <body>
+  	<div>
+	    <h1><%= title %></h1>
+	    <p>Welcome to <%= title %></p>
+	    <p><%= message %></p>
+	    <button id="b">click me</button>
+    </div>
+  </body>
+</html>
