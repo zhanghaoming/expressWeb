@@ -1,23 +1,17 @@
-
-var Mail='error';
-var Code='error';
+exports.Mail='error';
+exports.Code='';
+exports.Name='';
+exports.Phone='';
 
 exports.init=function(body){
-	console.log(body);
-	if(body.name)
+	if(!(body.mail&&body.code&&body.name&&body.phone))
 	{
-		Mail=body.name;
+		return false;
 	}
-	if(body.code)
-	{
-		Code=body.code;
-	}
-}
-
-exports.return_mail=function(){
-	return escape(Mail);
-}
-
-exports.return_code=function(){
-	return escape(Code);
+	this.Mail=body.mail;
+	console.log(body.mail);
+	this.Code=body.code;
+	this.Name=body.name;
+	this.Phone=body.phone;
+	return true;
 }

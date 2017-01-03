@@ -1,29 +1,76 @@
 var express = require('express');
 var router = express.Router();
-
 var registerProfile=require('./mymodule/classProfile');
+
+router.get('/register',function(req,res){
+	res.render('register',{title: 'come'});
+})
 
 router.post('/register',function(req,res){
 	var info=req.body;
-	registerProfile.init(info);
-	res.send(registerProfile.return_mail());
-	/*globalConnection.query(selectSql,function(err,result,fields){
-		if(err){
-	  		console.log('getUserbyUsername err:' + err) ;
-	  		return ;
-	  	}
-	  	if(result)
-        {
-          for(var i = 0; i < result.length; i++)
-          {
-              console.log("%s", result[i].code);
-          }
-          if(result[0]['code']==req.body.code)
-          	res.render('index', { title: 'Hey', message: 'Hello there!'});
-          else
-          	res.send("fuck");
-		}   
-	}) ;*/
+	res.render('register',{title: 'come'})
+	if(registerProfile.init(info))
+	{
+		/*res.send(registerProfile.Mail);*/
+		
+		var insertAccount="insert into test.codestore (user,code) values (" 
+		+ "'" + escape(registerProfile.Mail) 
+		+ "'" 
+		+ ","
+		+ "'"
+		+ escape(registerProfile.Code) 
+		+ "');" ;
+		console.log(insertAccount);
+		globalConnection.query(insertAccount,function(err,result,fields){
+			if(err){
+		  		globalConnection.rollback(function(){
+		  			console.log(err);
+		  		}) ;
+		  		return ;
+		  	}
+		  	if(result)
+	        {
+	        	console.log(result);
+			}   
+			var insertProfile="insert into test.profile (name,phone) values (" 
+			+ "'" + escape(registerProfile.Name) 
+			+ "'" 
+			+ ","
+			+ "'"
+			+ escape(registerProfile.Phone) 
+			+ "');";
+			globalConnection.query(insertProfile,function(err,result,fields){
+				if(err){
+			  		globalConnection.rollback(
+			  		function(){
+			  			console.log(err);
+			  		}) ;
+			  		return ;
+			  	}
+			  	if(result)
+		        {
+		        	console.log(result.insertId);
+		        	var insertRela=insertProfile="insert into code_profile (account,profile_id) values (" 
+					+ "'" + escape(registerProfile.Mail) 
+					+ "'" 
+					+ ","
+					+ "'"
+					+ result.insertId
+					+ "');";
+					globalConnection.query(insertRela,function(err){
+						if(err){
+							globalConnection.rollback(
+					  		function(){
+					  			console.log(err);
+					  		}) ;
+					  		return ;
+						}
+					})
+				}   
+			}) ;
+		}) ;
+	}
+
 })
 
 

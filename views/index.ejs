@@ -4,12 +4,25 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 	</script>
+	<div id='hh'></div>
+	<div id='ss'></div>
 	<script>
-	$(document).ready(function(){
+	function hideit(){
+		document.getElementById("ss").innerHTML='xx';
+	}
+	/*$(document).ready(function(){
 	  $("#b").click(function(){
 	    $("p").hide();
 	  });
-	});
+	});*/
+	var txt='<%- JSON.stringify(movie)%>';
+		var result = JSON.parse(txt);
+		var innerhtml="<br>";
+		for (var i=0;i<result.length;i++)
+		{
+			innerhtml=innerhtml + result[i].user+"<br>";
+		}
+		document.getElementById("hh").innerHTML = innerhtml;
 	</script>
   </head>
 
@@ -18,7 +31,13 @@
 	    <h1><%= title %></h1>
 	    <p>Welcome to <%= title %></p>
 	    <p><%= message %></p>
-	    <button id="b">click me</button>
+	    
+	    <form id="text_form" method="get" action="/login">                                                                                   
+		    <input class="submit" type="submit" value="submit">
+	    </form>
     </div>
+    
   </body>
+
+  <s>
 </html>

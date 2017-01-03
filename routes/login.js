@@ -16,8 +16,7 @@ router.post('/login',function(req,res)
 	var data=req.body;
 	for(var key in req.cookies)
 	{
-		console.log(key);
-		console.log(req.cookies[key]);
+		console.log('cookie: '+key+' '+req.cookies[key]);
 	}
 	console.log(req.body);
 	var selectSql = "select code from codestore where user="+"'"+escape(data.name)+"'";
@@ -26,18 +25,85 @@ router.post('/login',function(req,res)
 	  		console.log('getUserbyUsername err:' + err) ;
 	  		return ;
 	  	}
-	  	if(result)
+	  	console.log(result);
+	  	if(result[0])
         {
           for(var i = 0; i < result.length; i++)
           {
-              console.log("%s", result[i].code);
+              console.log(JSON.stringify(result));
           }
           if(result[0]['code']==req.body.code)
-          	res.render('index', { title: 'Hey', message: 'Hello there!'});
+          {
+          	req.session.sign=true;
+          	req.session.user=req.body.name;
+          	res.cookie('user', req.body.name, {
+				maxAge:1000*1000,  httpOnly:true
+			});
+          	res.render('index',
+	          	{
+			        title:'success',
+			        message:'kk',
+			        movie:[]
+			    });
+          	
+          }
           else
-          	res.send("fuck");
+          {
+          	var selectSql='select * from codestore';
+          	globalConnection.query(selectSql,function(err,result){
+        		var data=result;
+        		console.log(data);
+          		res.render('index',
+	          	{
+			        title:'fail',
+			        message:'kk',
+			        movie:data
+			    });
+          	})
+          	
+          }
 		}   
+		else
+		{
+			res.send('unknown account');
+		}
 	}) ;
 })
 
+router.get('/login', function (req, res) {
+	if(req.session.sign)
+	{
+	    for(var key in req.cookies)
+		{
+			console.log('cookie: '+key+' '+req.cookies[key]);
+		}
+		res.render('index',
+		          	{
+				        title:'fail',
+				        message:'kk',
+				        movie:[]
+				    });
+	}
+	else
+	{
+		res.send('no session');
+	}
+    
+})
+
+router.get('/session',function(req,res,next)
+{
+	if(req.session.sign)
+	{
+	    for(var key in req.cookies)
+		{
+			console.log('cookie: '+key+' '+req.cookies[key]);
+		}
+		res.send(req.session.user);
+	}
+	else
+	{
+		res.send('no session');
+	}
+})
 module.exports = router;
