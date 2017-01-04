@@ -14,12 +14,8 @@ port:'3306'
 router.post('/login',function(req,res)
 {
 	var data=req.body;
-	for(var key in req.cookies)
-	{
-		console.log('cookie: '+key+' '+req.cookies[key]);
-	}
 	console.log(req.body);
-	var selectSql = "select code from codestore where user="+"'"+escape(data.name)+"'";
+	var selectSql = "select code from account where user="+"'"+escape(data.name)+"'";
 	globalConnection.query(selectSql,function(err,result,fields){
 		if(err){
 	  		console.log('getUserbyUsername err:' + err) ;
@@ -49,7 +45,7 @@ router.post('/login',function(req,res)
           }
           else
           {
-          	var selectSql='select * from codestore';
+          	var selectSql='select * from account';
           	globalConnection.query(selectSql,function(err,result){
         		var data=result;
         		console.log(data);
@@ -71,7 +67,7 @@ router.post('/login',function(req,res)
 })
 
 router.get('/login', function (req, res) {
-	if(req.session.sign)
+	if(req.session.user)
 	{
 	    for(var key in req.cookies)
 		{

@@ -13,7 +13,7 @@ router.post('/register',function(req,res){
 	{
 		/*res.send(registerProfile.Mail);*/
 		
-		var insertAccount="insert into test.codestore (user,code) values (" 
+		var insertAccount="insert into test.account (user,code) values (" 
 		+ "'" + escape(registerProfile.Mail) 
 		+ "'" 
 		+ ","
@@ -50,7 +50,7 @@ router.post('/register',function(req,res){
 			  	if(result)
 		        {
 		        	console.log(result.insertId);
-		        	var insertRela=insertProfile="insert into code_profile (account,profile_id) values (" 
+		        	var insertRela=insertProfile="insert into account_profile (user,profile_id) values (" 
 					+ "'" + escape(registerProfile.Mail) 
 					+ "'" 
 					+ ","
@@ -68,7 +68,7 @@ router.post('/register',function(req,res){
 					})
 				}   
 			}) ;
-		}) ;
+		});
 	}
 
 })

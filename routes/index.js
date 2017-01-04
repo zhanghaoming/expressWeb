@@ -5,6 +5,11 @@ var mysql=require('mysql');
 
 
 router.get('/', function (req, res) {
+    if(req.session.user)
+    {
+        res.send('no need');
+        return ;
+    }
   res.render('login',
    {
         title:'网站首页',
@@ -36,5 +41,26 @@ router.get('/', function (req, res) {
             }
         ]
     });
+});
+
+router.get('/home', function (req, res) {
+    res.render('home',
+    {
+        activityArr:
+        [
+            {
+                "title":"test",
+                "type":"test",
+                "date":"2016",
+                "description":'ok'
+            },
+            {
+                "title":"test2",
+                "type":"test2",
+                "date":"2016",
+                "description":'ok'
+            }
+        ]
+    })
 });
 module.exports = router;
