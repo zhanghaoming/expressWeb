@@ -9,21 +9,33 @@ router.get('/register',function(req,res){
 router.post('/register',function(req,res){
 	var info=req.body;
 	res.render('register',{title: 'come'})
+
 	if(registerProfile.init(info))
 	{
 		/*res.send(registerProfile.Mail);*/
 		
-		var insertAccount="insert into test.account (user,code) values (" 
-		+ "'" + escape(registerProfile.Mail) 
+		var insertAccount="insert into account (email,password,account_name,tel,credit) values (" 
+		+ "'" + escape(registerProfile.Email) 
+		+ "'" 
+		+ ","
+		+ "'" + escape(registerProfile.Password) 
+		+ "'" 
+		+ ","
+		+ "'" + escape(registerProfile.Name) 
 		+ "'" 
 		+ ","
 		+ "'"
-		+ escape(registerProfile.Code) 
-		+ "');" ;
+		+ escape(registerProfile.Tel) 
+		+ "'"
+		+ ","
+		+ '0'
+		+ ");" ;
 		console.log(insertAccount);
 		globalConnection.query(insertAccount,function(err,result,fields){
-			if(err){
-		  		globalConnection.rollback(function(){
+			if(err)
+			{
+		  		globalConnection.rollback(function()
+		  		{
 		  			console.log(err);
 		  		}) ;
 		  		return ;
@@ -32,45 +44,9 @@ router.post('/register',function(req,res){
 	        {
 	        	console.log(result);
 			}   
-			var insertProfile="insert into test.profile (name,phone) values (" 
-			+ "'" + escape(registerProfile.Name) 
-			+ "'" 
-			+ ","
-			+ "'"
-			+ escape(registerProfile.Phone) 
-			+ "');";
-			globalConnection.query(insertProfile,function(err,result,fields){
-				if(err){
-			  		globalConnection.rollback(
-			  		function(){
-			  			console.log(err);
-			  		}) ;
-			  		return ;
-			  	}
-			  	if(result)
-		        {
-		        	console.log(result.insertId);
-		        	var insertRela=insertProfile="insert into account_profile (user,profile_id) values (" 
-					+ "'" + escape(registerProfile.Mail) 
-					+ "'" 
-					+ ","
-					+ "'"
-					+ result.insertId
-					+ "');";
-					globalConnection.query(insertRela,function(err){
-						if(err){
-							globalConnection.rollback(
-					  		function(){
-					  			console.log(err);
-					  		}) ;
-					  		return ;
-						}
-					})
-				}   
-			}) ;
+			
 		});
 	}
-
 })
 
 

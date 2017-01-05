@@ -1,17 +1,17 @@
-exports.Mail='error';
-exports.Code='';
+exports.Email='error';
+exports.Password='';
 exports.Name='';
-exports.Phone='';
+exports.Tel='';
 
 exports.init=function(body){
 	if(!(body.mail&&body.code&&body.name&&body.phone))
 	{
 		return false;
 	}
-	this.Mail=body.mail;
+	this.Email=body.mail;
 	console.log(body.mail);
-	this.Code=body.code;
+	this.Password=body.code;
 	this.Name=body.name;
-	this.Phone=body.phone;
+	this.Tel=body.phone;
 	return true;
 }

@@ -13,10 +13,10 @@ app.use(express.static('public'));
 
 var mysql = require('mysql');
 global.globalConnection=mysql.createConnection({
-	host : 'localhost' ,
-	user : 'root' ,
-	password : 'zxcvbnm123' ,
-	database : 'test',
+	host : '123.206.191.216' ,
+	user : 'user1' ,
+	password : '123456' ,
+	database : 'software2016',
 	port:'3306'
 });
 
@@ -31,17 +31,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use(session({
 resave: true, // don't save session if unmodified
 saveUninitialized: false, // don't create session until something stored
-secret: 'zdagfagfad',
-cookie: {maxAge: 60 * 1000 }
+secret: 'zdagfagfad'
 }));
 
 app.use('/', index);
 app.use('/users', users);
 app.use(require('./routes/login'));
 app.use(require('./routes/register'));
+app.use(require('./routes/releaseActivity'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

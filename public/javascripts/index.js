@@ -45,3 +45,21 @@ function getActivityInfo() {
     })
 }
 
+function turnActivity() {
+    $.ajax({
+        url: '/activitiy',
+        /*?title=' + title + '&date' + date + '&type' + type + '&img' + img + '&description' + description,*/
+        type:'get',
+        data:{},
+        success:function (data,status) {
+            windows.location('/activitiy');
+        },
+        error:function () {
+            windows.location('/activitiy');
+        }
+        parsererror:function () {
+            windows.location('/activitiy');
+        }
+    })
+    alert('ok');
+}

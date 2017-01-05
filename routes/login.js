@@ -15,7 +15,7 @@ router.post('/login',function(req,res)
 {
 	var data=req.body;
 	console.log(req.body);
-	var selectSql = "select code from account where user="+"'"+escape(data.name)+"'";
+	var selectSql = "select password from account where email="+"'"+escape(data.name)+"'";
 	globalConnection.query(selectSql,function(err,result,fields){
 		if(err){
 	  		console.log('getUserbyUsername err:' + err) ;
@@ -28,35 +28,43 @@ router.post('/login',function(req,res)
           {
               console.log(JSON.stringify(result));
           }
-          if(result[0]['code']==req.body.code)
+          if(result[0]['password']==req.body.code)
           {
+          	//cookie&session
           	req.session.sign=true;
           	req.session.user=req.body.name;
+
           	res.cookie('user', req.body.name, {
 				maxAge:1000*1000,  httpOnly:true
 			});
-          	res.render('index',
+
+          	
+          	var selectSql='select * from activity';
+
+          	globalConnection.query(selectSql,function(err,result){
+          		if(err)
+          		{
+          			res.render('home',
+		          	{
+				        activityArr:[]
+				    });
+          		}
+        		var data=result;
+        		console.log(data);
+        		//此处应该返回data
+          		res.render('home',
 	          	{
-			        title:'success',
-			        message:'kk',
-			        movie:[]
+			        activityArr:[]
 			    });
+          	})
           	
           }
           else
           {
-          	var selectSql='select * from account';
-          	globalConnection.query(selectSql,function(err,result){
-        		var data=result;
-        		console.log(data);
-          		res.render('index',
+          		res.render('home',
 	          	{
-			        title:'fail',
-			        message:'kk',
-			        movie:data
+			        activityArr:[]
 			    });
-          	})
-          	
           }
 		}   
 		else

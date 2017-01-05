@@ -11,12 +11,12 @@ function createActivity() {
     //
     // }
     $.ajax({
-        url: '/xxx?title=' + title + '&date' + date + '&type' + type + '&img' + img + '&description' + description,
+        url: '/releaseActivtiy',
         type:'post',
         data:{},
-        success:function (json) {
-            location.reload();
-            if(json==null){
+        success:function (data,status) {
+            alert("提交成功");
+           /* if(json==null){
                 alert("服务器连接失败");
             }
             var activityInfo = eval("("+json+")");
@@ -25,10 +25,11 @@ function createActivity() {
             }
             else {
                 alert("提交失败");
-            }
+            }*/
         },
         error:function () {
             alert("无法连接服务器");
         }
     })
 }
+
