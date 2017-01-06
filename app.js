@@ -43,6 +43,7 @@ app.use('/users', users);
 app.use(require('./routes/login'));
 app.use(require('./routes/register'));
 app.use(require('./routes/releaseActivity'));
+app.use(require('./routes/activityDetail'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

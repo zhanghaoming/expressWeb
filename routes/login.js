@@ -15,7 +15,7 @@ router.post('/login',function(req,res)
 {
 	var data=req.body;
 	console.log(req.body);
-	var selectSql = "select password from account where email="+"'"+escape(data.name)+"'";
+	var selectSql = "select * from account where email="+"'"+escape(data.name)+"'";
 	globalConnection.query(selectSql,function(err,result,fields){
 		if(err){
 	  		console.log('getUserbyUsername err:' + err) ;
@@ -33,6 +33,8 @@ router.post('/login',function(req,res)
           	//cookie&session
           	req.session.sign=true;
           	req.session.user=req.body.name;
+          	console.log(result[0]);
+          	req.session.account_id=result[0]['account_id'];
 
           	res.cookie('user', req.body.name, {
 				maxAge:1000*1000,  httpOnly:true
@@ -50,7 +52,7 @@ router.post('/login',function(req,res)
 				    });
           		}
         		var data=result;
-        		console.log(data);
+
         		//此处应该返回data
           		res.render('home',
 	          	{
@@ -77,9 +79,11 @@ router.post('/login',function(req,res)
 router.get('/login', function (req, res) {
 	if(req.session.user)
 	{
+		console.log(req.session.account_id);
 	    for(var key in req.cookies)
 		{
 			console.log('cookie: '+key+' '+req.cookies[key]);
+			
 		}
 		res.render('index',
 		          	{
