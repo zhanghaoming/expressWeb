@@ -4,25 +4,10 @@ var fs = require('fs');
 var formidable=require('formidable')
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
-var Activity=require('./mymodule/classActivity');
+var Activity=require('./mymodule/classLost');
 
-router.post('/test',multipartMiddleware,function(req,res)
+router.post('/releaseLost',multipartMiddleware,function(req, res)
 {
-	console.log(req.body);
-	console.log(req.files);
-	if(req.session.user)
-	{
-		res.send(200);
-	}
-	else
-	{
-		res.send(404);
-	}
-})
-
-router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
-{
-	//console.log(req.body);
 	var storePath;
 	if(!req.session.user)
 	{
@@ -30,12 +15,13 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	}
 	if(!Activity.init(req.body))
 	{
+		////////////////////////
 		res.render('/activity');
 	}
 	//图片上传
 	if(req.files.img.name=='')
 	{
-		storePath='/images/default_activity.jpg';
+		storePath='/images/default_lost.jpg';
 	}
 	else
 	{
@@ -74,7 +60,7 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	    }
 	    else
 	    {
-	        var avatarName = '/' + Date.now() + '.' + extName;
+	        var avatarName = '/lf' + Date.now() + '.' + extName;
 	        var newPath = userDirPath + avatarName;
 	        displayUrl = currentUser + avatarName;
 
@@ -87,7 +73,7 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	     	storePath='/images/upload/'+currentUser+avatarName;
 	    }
 
-	    var insertSql="insert into activity(name,time,place,intro,type,img) values ("
+	    var insertSql="insert into lostFound(name,time,place,intro,type,img) values ("
 	    + "'" + escape(Activity.Name) 
 		+ "'" 
 		+ ","
@@ -119,7 +105,7 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 		  	}
 		  	if(result)
 	        {
-	        	var insertRelease="insert into release_activity(account_id,activity_id) values ("
+	        	var insertRelease="insert into release_lost(account_id,announce_id) values ("
 			    + "'" + req.session.account_id
 				+ "'" 
 				+ ","
@@ -144,8 +130,8 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	}
 })
 
-router.get('/release_activity',function(req,res)
+router.get('/release_lost',function(req,res)
 {
-	res.render('release_activity');
+	res.render('release_lost');
 })
 module.exports = router;
