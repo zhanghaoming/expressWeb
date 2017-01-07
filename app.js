@@ -49,6 +49,9 @@ app.use(require('./routes/releaseActivity'));
 app.use(require('./routes/homepage'));
 app.use(require('./routes/activity'));
 app.use(require('./routes/comment'));
+app.use(require('./routes/lostFound'));
+app.use(require('./routes/message'));
+app.use(require('./routes/lostInfo'));
 
 
 
