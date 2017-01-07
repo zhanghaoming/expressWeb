@@ -3,32 +3,35 @@ var express=require('express');
 var router=express.Router();
 
 router.get('/activity', function (req, res) {
-    var activity_id=req.body.activity_id;
+    //var activity_id=req.body.activity_id;
+    var activity_id=16;
+    //console.log(activity_id);
     //var account_id=req.session.user_id;
-    var page=req.body.page;
-    var selectSql="select name,time,place,intro,type,num_people,img from activity where activity_id="+activity_id;
+    //var page=req.body.page;
+    var selectSql="select name,date_format(time,'%Y-%m-%d') as time,place,intro,type,num_people,img from activity where activity_id="+activity_id;
     globalConnection.query(selectSql,function(err,result,fields){
         if(err){
             console.log('get activity err:' + err) ;
             return ;
         }
-        console.log(result);
+        //console.log(result);
         if(result)
         {
             //res.render('activity',{activity:result});
             //res.render('homepage',{activity:"ok"});
             var activity_info=result;
-            var selectSql="select content,comment_id, from activity where activity_id="+activity_id;
+            var selectSql="select content,comment_id from comment where activity_id="+activity_id;
             globalConnection.query(selectSql,function(err,result,fields){
                 if(err){
                     console.log('err:' + err) ;
                     return ;
                 }
-                console.log(result);
+                //console.log(result);
                 if(result)
                 {
                     //res.render('homepage',{activityArr:result});
-                    res.render('homepage',{activity:activity_info,comment:result});
+                    console.log("test1:"+activity_info) ;
+                    res.render('activity_detail',{activity:activity_info,comment:result});
                     //res.send("insert");
                 }
                 else
