@@ -4,12 +4,13 @@ var router=express.Router();
 
 router.get('/homepage', function (req, res) {
     console.log("test OK");
-    var page=req.body.page;
+    req.session.comment_page=1;
+    var page=req.session.activity_page;
     //var page=1;
     var m=page-1;
     var n=(page-1)*10+9;
-    console.log("rows:",m,n);
-    var selectSql="select activity_id,name,time,place,type,img from activity order by time asc limit "+m+","+n;
+    //console.log("rows:",m,n);
+    var selectSql="select activity_id,name,date_format(time,'%Y-%m-%d') as time,place,type,intro,img from activity order by time desc limit "+m+","+n;
     globalConnection.query(selectSql,function(err,result,fields){
         if(err){
             console.log('get activity err:' + err) ;
@@ -18,7 +19,7 @@ router.get('/homepage', function (req, res) {
         console.log(result);
         if(result)
         {
-            res.render('homepage',{activityArr:result});
+            res.render('home',{activityArr:result});
             //res.render('homepage',{activity:"ok"});
         }
         else

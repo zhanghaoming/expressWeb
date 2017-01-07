@@ -31,7 +31,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#" class="">首页</a></li>
                         <li><a href="#">同城活动</a></li>
-                        <li><a href="/activity" onclick="turnActivtiy()">发布活动</a></li>
+                        <li><a href="/release_activity" onclick="turnActivtiy()">发布活动</a></li>
                         <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button"
                                                  aria-haspopup="true" aria-expanded="false">失物 <span
                                 class="caret"></span></a>
@@ -122,7 +122,7 @@
                             <table class="table table-filter">
                                 <tbody>
                                 <% for(var i = 0;i < activityArr.length;i++){%>
-                                <tr data-status="<%=activityArr[i].type%>">
+                                <tr data-status="<%=activityArr[i].type%>" id="<%=activityArr[i].activity_id%>" onclick="">
                                     <td>
 
                                     </td>
@@ -138,12 +138,12 @@
                                                      class="media-photo">
                                             </a>
                                             <div class="media-body">
-                                                <span class="media-meta pull-right"><%=activityArr[i].date%></span>
+                                                <span class="media-meta pull-right"><%=activityArr[i].time%></span>
                                                 <h4 class="title">
-                                                    <%=activityArr[i].title%>
+                                                    <%=activityArr[i].name%>
                                                     <span class="pull-right <%=activityArr[i].type%>"><%=activityArr[i].type%></span>
                                                 </h4>
-                                                <p class="summary"><%=activityArr[i].description%></p>
+                                                <p class="summary"><%=activityArr[i].intro%></p>
                                             </div>
                                         </div>
                                     </td>

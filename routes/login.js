@@ -22,58 +22,35 @@ router.post('/login',function(req,res)
 	  		return ;
 	  	}
 	  	console.log(result);
-	  	if(result[0])
-        {
-          for(var i = 0; i < result.length; i++)
-          {
-              console.log(JSON.stringify(result));
-          }
-          if(result[0]['password']==req.body.code)
-          {
-          	//cookie&session
-          	req.session.sign=true;
-          	req.session.user=req.body.name;
-          	console.log(result[0]);
-          	req.session.account_id=result[0]['account_id'];
+	  	if(result[0]) {
+            for (var i = 0; i < result.length; i++) {
+                console.log(JSON.stringify(result));
+            }
+            if (result[0]['password'] == req.body.code) {
+                //cookie&session
+                req.session.sign = true;
+                req.session.user = req.body.name;
+                console.log(result[0]);
+                req.session.account_id = result[0]['account_id'];
+                req.session.activity_page = 1;
 
-          	res.cookie('user', req.body.name, {
-				maxAge:1000*1000,  httpOnly:true
-			});
-
-          	
-          	var selectSql='select * from activity';
-
-          	globalConnection.query(selectSql,function(err,result){
-          		if(err)
-          		{
-          			res.render('home',
-		          	{
-				        activityArr:[]
-				    });
-          		}
-        		var data=result;
-
-        		//此处应该返回data
-          		res.render('home',
-	          	{
-			        activityArr:[]
-			    });
-          	})
-          	
-          }
+                res.cookie('user', req.body.name, {
+                    maxAge: 1000 * 1000, httpOnly: true
+                });
+                res.redirect("/homepage");
+            }
           else
-          {
-          		res.render('home',
-	          	{
-			        activityArr:[]
-			    });
+		  {
+              res.redirect("/");
           }
-		}   
-		else
+        }
+        else
 		{
-			res.send('unknown account');
+            res.redirect("/");
 		}
-	}) ;
+    });
+
+
 })
 
 router.get('/login', function (req, res) {

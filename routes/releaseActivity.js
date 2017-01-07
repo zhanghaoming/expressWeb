@@ -144,7 +144,7 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	}
 })
 
-router.get('/activity',function(req,res)
+router.get('/release_activity',function(req,res)
 {
 	res.render('release_activity');
 })
