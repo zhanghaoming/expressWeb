@@ -44,11 +44,15 @@ app.use(require('./routes/login'));
 app.use(require('./routes/register'));
 app.use(require('./routes/releaseActivity'));
 
+
 //lgz's here
 app.use(require('./routes/homepage'));
 app.use(require('./routes/activity'));
 app.use(require('./routes/comment'));
 
+
+
+app.use(require('./routes/activityDetail'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

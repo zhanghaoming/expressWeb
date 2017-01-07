@@ -8,7 +8,7 @@ router.get('/register',function(req,res){
 
 router.post('/register',function(req,res){
 	var info=req.body;
-	res.render('register',{title: 'come'})
+	
 
 	if(registerProfile.init(info))
 	{
@@ -36,6 +36,7 @@ router.post('/register',function(req,res){
 			{
 		  		globalConnection.rollback(function()
 		  		{
+		  			res.render('register',{title: 'false'})
 		  			console.log(err);
 		  		}) ;
 		  		return ;
@@ -44,8 +45,13 @@ router.post('/register',function(req,res){
 	        {
 	        	console.log(result);
 			}   
-			
+			res.render('register',{title: 'ok'})
 		});
+	}
+	else
+	{
+		res.render('register',{title: 'incomplete information'});
+
 	}
 })
 
