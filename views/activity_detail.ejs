@@ -65,14 +65,14 @@
             <div class="wrapper row">
                 <div class="preview col-md-5">
                     <!-- <img src="http://placekitten.com/400/252"/> -->
-                    <img src="<%=activity[0].img%>"/>
+                    <img src="<%=unescape(activity[0].img)%>"/>
                 </div>
                 <div class="details col-md-6 col-md-offset-1">
-                    <h3 class="activity-title"><%=activity[0].name%></h3>
+                    <h3 class="activity-title"><%=unescape(activity[0].name)%></h3>
                     <p class="vote"><strong><%=activity[0].num_people%></strong>的人已经参加！ <strong>(87 likes)</strong></p>
-                    <h4 class="time">时间： <span><%=activity[0].time%></span></h4>
-                    <h4 class="address">地点：<span><%=activity[0].place%></span></h4>
-                    <h5 class="type">标签：<span><%=activity[0].type%></span></h5>
+                    <h4 class="time">时间： <span><%=unescape(activity[0].time)%></span></h4>
+                    <h4 class="address">地点：<span><%=unescape(activity[0].place)%></span></h4>
+                    <h5 class="type">标签：<span><%=unescape(activity[0].type)%></span></h5>
                     <div class="action">
                         <button class="add-to-cart btn btn-default" type="button">感兴趣</button>
                         <button class="add-to-cart btn btn-default" type="button">要参加</button>
@@ -81,7 +81,7 @@
             </div>
             <div class="description">
                 <h3>活动简介</h3>
-                <p><%=activity[0].intro%></p>
+                <p><%=unescape(activity[0].intro)%></p>
             </div>
 
             <div class="comment-container">
@@ -95,9 +95,9 @@
 					<% for(var i = 0;i < comment.length;i++){%>
                     <tr style="height: 3cm">
                         <td width="20%">
-                            <%=comment[i].username%>
+                            <%=unescape(comment[i].username)%>
                         </td>
-                        <td width="80%"><%=comment[i].content%></td>
+                        <td width="80%"><%=unescape(comment[i].content)%></td>
                     </tr>
 					<%} %>
                     </tbody>
