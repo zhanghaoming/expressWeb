@@ -123,7 +123,7 @@
                             <table class="table table-filter">
                                 <tbody>
                                 <% for(var i = 0;i < activityArr.length;i++){%>
-                                <tr data-status="<%=activityArr[i].type%>" id="<%=activityArr[i].activity_id%>" onclick="details_info(this)">
+                                <tr data-status="<%=unescape(activityArr[i].type)%>" id="<%=activityArr[i].activity_id%>" onclick="details_info(this)">
                                     <td>
 
                                     </td>
@@ -139,12 +139,12 @@
                                                      class="media-photo">
                                             </a>
                                             <div class="media-body">
-                                                <span class="media-meta pull-right"><%=activityArr[i].time%></span>
+                                                <span class="media-meta pull-right"><%=unescape(activityArr[i].time)%></span>
                                                 <h4 class="title">
-                                                    <%=activityArr[i].name%>
-                                                    <span class="pull-right <%=activityArr[i].type%>"><%=activityArr[i].type%></span>
+                                                    <%=unescape(activityArr[i].name)%>
+                                                    <span class="pull-right <%=unescape(activityArr[i].type)%>"><%=unescape(activityArr[i].type)%></span>
                                                 </h4>
-                                                <p class="summary"><%=activityArr[i].intro%></p>
+                                                <p class="summary"><%=unescape(activityArr[i].intro)%></p>
                                             </div>
                                         </div>
                                     </td>

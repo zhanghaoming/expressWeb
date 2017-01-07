@@ -8,7 +8,7 @@ router.post('/message', function (req, res) {
     var reciver_id=req.session.reciver_id;
     var content=req.body.content;
     var sender_name=req.session.user;
-    var insertSql="insert into message(content,sender_id,receiver_id,sender_name) value("+"'"+content+"'"+","+sender_id+","+reciver_id+","+"'"+sender_name+"'"+")";
+    var insertSql="insert into message(content,sender_id,receiver_id,sender_name) value("+"'"+escape(content)+"'"+","+escape(sender_id)+","+escape(reciver_id)+","+"'"+escape(sender_name)+"'"+")";
     globalConnection.query(insertSql,function(err,result,fields){
         if(err){
             console.log('insert into message err:' + err) ;

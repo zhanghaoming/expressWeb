@@ -7,7 +7,7 @@ router.post('/comment', function (req, res) {
     var account_id=req.session.account_id;
     var content=req.body.content;
     var name=req.session.user;
-    var insertSql="insert into comment(content,activity_id,account_id,username) value("+"'"+content+"'"+","+activity_id+","+account_id+","+"'"+name+"'"+")";
+    var insertSql="insert into comment(content,activity_id,account_id,username) value("+"'"+escape(content)+"'"+","+escape(activity_id)+","+escape(account_id)+","+"'"+escape(name)+"'"+")";
     globalConnection.query(insertSql,function(err,result,fields){
         if(err){
             console.log('insert into comment err:' + err) ;
