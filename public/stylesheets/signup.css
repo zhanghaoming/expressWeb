@@ -1,0 +1,78 @@
+body {
+	background: url(../images/login_bg_0.jpg) #f8f6e9;
+}
+
+.signup {
+	width: 477px;
+	height: 479px;
+	background: url(../images/login_bg.png) no-repeat;
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -239px;
+	margin-left: -238px;
+}
+
+.signup-head {
+	margin: 0 auto;
+	padding-top: 30px;
+	width: 120px;
+}
+
+.form-signup {
+	max-width: 330px;
+	padding: 33px 15px 15px 15px;
+	margin: 0 auto;
+}
+
+.form-signup .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signup .checkbox {
+	font-weight: normal;
+}
+
+.form-signup .form-control {
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.form-signup .form-control:focus {
+	z-index: 2;
+}
+
+.form-signup input[type="text1"] {
+	margin-bottom: 10px;
+	border-radius: 0;
+	background: url(../images/login_user.jpg) 0 0 #bdbdbd no-repeat;
+	padding-left: 60px;
+	color: #FFFFFF;
+}
+
+.form-signup input[type="text2"] {
+	margin-bottom: 10px;
+	border-radius: 0;
+	background: url(../images/login_mail.jpg) 0 0 #bdbdbd no-repeat;
+	padding-left: 60px;
+	color: #FFFFFF;
+}
+
+.form-signup input[type="password"] {
+	margin-bottom: 10px;
+	border-radius: 0;
+	background: url(../images/login_pas.jpg) 0 0 #bdbdbd no-repeat;
+	padding-left: 60px;
+	color: #FFFFFF;
+}
+
+.form-signup button {
+	margin-top: 20px;
+	border-radius: 0;
+}
