@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/stylesheets/activity_detail.css">
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
+	<script src="/javascripts/home.js"></script>
 </head>
 <body>
 <!--导航栏-->
@@ -86,15 +87,15 @@
             <div class="comment-container">
                 <h3>评论区</h3>
                 <div>
-                    <textarea class="form-control col-md-8" title="comment" id="comment" name="comment" rows="3">我也来说几句...</textarea>
+                    <textarea class="form-control col-md-8" title="comment" id="comment" name="comment" rows="3" placeholder="我也来说几句..."></textarea>
                 </div>
-                <button class="btn btn-primary btn-lg pull-right" type="submit" onclick="createComment()">发表</button>
+                <button class="btn btn-primary btn-lg pull-right" type="submit" onclick="createComment1()">发表</button>
                 <table class="table">
                     <tbody>
 					<% for(var i = 0;i < comment.length;i++){%>
                     <tr style="height: 3cm">
                         <td width="20%">
-                            <%=comment[i].comment_id%>
+                            <%=comment[i].username%>
                         </td>
                         <td width="80%"><%=comment[i].content%></td>
                     </tr>
