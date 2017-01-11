@@ -1,68 +1,62 @@
-body {
-	background:url(../images/login_bg_0.jpg) #f8f6e9;
+
+body{
+    background: #fecf71;
 }
 
-.signin {
-	width:477px;
-	height:479px;
-	background:url(../images/login_bg.png) no-repeat;
-	margin:0 auto;
-	
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-top:-239px;
-	margin-left:-238px;
+h1.title {
+    font-size: 50px;
+    font-family: 'Passion One', cursive;
+    font-weight: 400;
 }
-.signin-head {
-	margin:0 auto;
-	padding-top:30px;
-	width:120px;
+.wrapper {
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
+
 .form-signin {
-  max-width: 330px;
-  padding: 50px 15px 15px 15px;
-  margin: 0 auto;
+    max-width: 420px;
+    padding: 30px 38px 66px;
+    margin: 0 auto;
+    background-color: #eee;
+    border: 3px dotted rgba(0,0,0,0.1);
 }
-.form-signin .checkbox {
-  margin-bottom: 10px;
+
+.form-signin-heading {
+    text-align:center;
+    margin-bottom: 30px;
 }
-.form-signin .checkbox {
-  font-weight: normal;
+
+.form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
 }
-.form-signin .form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+
+input[type="text"] {
+    margin-bottom: 0px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
-.form-signin .form-control:focus {
-  z-index: 2;
+
+input[type="password"] {
+    margin-bottom: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
-.form-signin input[type="text1"] {
-  margin-bottom: 20px;
-  border-radius: 0;
-  background: url(../images/login_user.jpg) 0 0 #bdbdbd no-repeat;
-  padding-left:60px;
-  color:#FFFFFF;
+
+.colorgraph {
+    height: 7px;
+    border-top: 0;
+    background: #c4e17f;
+    border-radius: 5px;
+    background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+    background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
-.form-signin input[type="text2"] {
-  margin-bottom: 20px;
-  border-radius: 0;
-  background: url(../images/login_mail.jpg) 0 0 #bdbdbd no-repeat;
-  padding-left:60px;
-  color:#FFFFFF;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 38px;
-  border-radius: 0;
-  background: url(../images/login_pas.jpg) 0 0 #bdbdbd no-repeat;
-  padding-left:60px;
-  color:#FFFFFF;
-}
-.form-signin button {
-  border-radius: 0;
+
+.form-signin .cut {
+    float: right;
+    margin-top: 30px;
 }
