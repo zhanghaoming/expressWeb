@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+
+    <link href="../public/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="../public/stylesheets/signin.css" rel="stylesheet">
+    <script src="../public/stylesheets/javascripts/jquery.min.js"></script>
+    <script src="../public/stylesheets/javascripts/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class = "container">
+    <div class="panel-heading">
+        <div class="panel-title text-center">
+            <h1 class="title">Company Name</h1>
+            <hr />
+        </div>
+    </div>
+    <div class="wrapper">
+        <form action="" method="post" name="Login_Form" class="form-signin">
+            <h3 class="form-signin-heading">Welcome! Please Sign In</h3>
+            <hr class="colorgraph"><br>
+
+            <div class="form-group">
+                <input id="emai2" type="text" class="form-control" name="Username" placeholder="邮箱" required="" autofocus="" />
+            </div>
+
+            <div class="form-group">
+                <input id="pasw" type="password" class="form-control" name="Password" placeholder="密码" required=""/>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">登录</button>
+            <a href="signup.html" class="cut">还未注册账户？点击注册</a>
+        </form>
+    </div>
+</div>
+
+<script src="js/signin.js"></script>
+</body>
+
+</html>

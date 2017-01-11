@@ -8,8 +8,7 @@ exports.init=function(body){
 	{
 		return false;
 	}
-	this.Email=body.mail;
-	console.log(body.mail);
+	this.Email=body.email;
 	this.Password=body.code;
 	this.Name=body.name;
 	this.Tel=body.phone;

@@ -15,38 +15,34 @@ router.post('/login',function(req,res)
 {
 	var data=req.body;
 	console.log(req.body);
-	var selectSql = "select * from account where email="+"'"+escape(data.name)+"'";
+	var selectSql = "select * from account where email="+"'"+escape(data.Username)+"'";
 	globalConnection.query(selectSql,function(err,result,fields){
 		if(err){
 	  		console.log('getUserbyUsername err:' + err) ;
 	  		return ;
 	  	}
-	  	console.log(result);
 	  	if(result[0]) {
-            for (var i = 0; i < result.length; i++) {
-                console.log(JSON.stringify(result));
-            }
-            if (result[0]['password'] == req.body.code) {
+            if (result[0]['password'] == req.body.Password) {
                 //cookie&session
                 req.session.sign = true;
-                req.session.user = req.body.name;
+                req.session.user = req.body.Username;
                 console.log(result[0]);
                 req.session.account_id = result[0]['account_id'];
                 req.session.activity_page = 1;
 
-                res.cookie('user', req.body.name, {
+                res.cookie('user', req.body.Username, {
                     maxAge: 1000 * 1000, httpOnly: true
                 });
                 res.redirect("/homepage");
             }
           else
 		  {
-              res.redirect("/");
+                res.render('signin',{status:"密码错误哦"});
           }
         }
         else
 		{
-            res.redirect("/");
+            res.render('signin',{status:"用户不存在"});
 		}
     });
 

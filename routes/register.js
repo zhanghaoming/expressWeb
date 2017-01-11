@@ -3,7 +3,7 @@ var router = express.Router();
 var registerProfile=require('./mymodule/classProfile');
 
 router.get('/register',function(req,res){
-	res.render('register',{title: 'come'});
+	res.render('signup');
 })
 
 router.post('/register',function(req,res){
@@ -45,7 +45,7 @@ router.post('/register',function(req,res){
 	        {
 	        	console.log(result);
 			}   
-			res.render('register',{title: 'ok'})
+			res.redirect('/',{status: ''})
 		});
 	}
 	else
