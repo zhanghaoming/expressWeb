@@ -4,12 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Release Lost</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/release_lost.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/nav.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <script src="/javascripts/jquery.min.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/release_lost.js"></script>
+	<script type="text/javascript" language="javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TbLC35kAGkxnk1bfocGR6TI8X1sgLCRz"></script>
     <style>
         body {
             text-align: center;
@@ -112,11 +114,11 @@
 
                     <!-- Select Basic -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="type">物品类型</label>
+                        <label class="col-md-4 control-label" for="type">类型</label>
                         <div class="col-md-4">
                             <select id="type" name="type" class="form-control">
-                                <option value="1">Option one</option>
-                                <option value="2">Option two</option>
+                                <option value="1">lost</option>
+                                <option value="2">found</option>
                             </select>
                         </div>
                     </div>
@@ -136,6 +138,28 @@
                             <textarea class="form-control" id="description" name="description"
                                       rows="3">default text</textarea>
                         </div>
+                    </div>
+					<!-- map -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="description">地图标识</label>
+						<div class="preview col-md-6" id="map" name="map" style="height:300px; width:480px;"></div>
+						<script type="text/javascript"> 
+							var map = new BMap.Map("map");          // 创建地图实例  
+							var point = new BMap.Point(121.221, 31.292);  // 创建点坐标  
+							map.centerAndZoom(point, 20);                 // 初始化地图，设置中心点坐标和地图级别
+							var marker = new BMap.Marker(point);        // 创建标注    
+							map.addOverlay(marker);                     // 将标注添加到地图中
+							//**********************************************
+							map.addControl(new BMap.NavigationControl());    
+							//map.addControl(new BMap.ScaleControl());    
+							map.addControl(new BMap.MapTypeControl());
+							//**********************************************
+							marker.enableDragging();    
+							marker.addEventListener("dragend", function(e){    
+							//alert("当前位置：" + e.point.lng + ", " + e.point.lat);
+							var coord = e.point.lng+','+e.point.lat; // 存放位置坐标
+							});
+						</script>
                     </div>
 
                     <div class="col-md-4 col-md-offset-4">
