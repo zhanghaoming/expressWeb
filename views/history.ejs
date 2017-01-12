@@ -3,10 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Personal Information</title>
-    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/nav.css">
-    <link rel="stylesheet" href="/stylesheets/index.css">
+    <title>History</title>
+    <link rel="stylesheet" href="stylesheets/bootstrap.min.css"/>
+    <link rel="stylesheet" href="stylesheets/nav.css"/>
+    <link rel="stylesheet" href="stylesheets/index.css">
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
     <style>
@@ -78,38 +78,100 @@
 <!--导航栏结束-->
 <div id="center">
     <div class="panel panel-default">
-        <div class="panel-heading" style="font-size: large; font-weight: bold">完善个人信息</div>
+        <div class="panel-heading" style="font-size: large; font-weight: bold">已发布活动信息</div>
         <div class="panel-body">
-            <form class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">用户名：</label>
-                        <p style="float: left; font-size: larger"><%=unescape(personal[0].account_name)%></p>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">邮箱：</label>
-                        <p style="float: left; font-size: larger"><%=unescape(personal[0].email)%></p>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">认证：</label>
-                        <p style="float: left; font-size: larger"><%=unescape(personal[0].approve)%></p>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">积分：</label>
-                        <p style="float: left; font-size: larger"><%=unescape(personal[0].credit)%></p>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label">联系方式：</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control input-md" required="required" value="<%=unescape(personal[0].tel)%>">
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-offset-4">
-                        <button class="btn btn-primary btn-lg" type="submit" onclick="createActivity()">确认</button>
-                        <button class="btn btn-primary btn-lg col-md-offset-5" type="reset">重置</button>
-                    </div>
-                </fieldset>
-            </form>
+            <table id="activity" class="table">
+                <tbody>
+                <tr>
+                    <th>活动名称</th>
+                    <th>时间</th>
+                    <th>地点</th>
+                    <th>活动类型</th>
+                    <th>活动简介</th>
+                </tr>
+                <tr>
+                    <td>圣诞嘉年华</td>
+                    <td>12.25</td>
+                    <td>新天地一条街</td>
+                    <td>校级</td>
+                    <td>校学生会国际部</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: large; font-weight: bold">已发布失物信息</div>
+        <div class="panel-body">
+            <table id="lost" class="table">
+                <tbody>
+                <tr>
+                    <th>物品名称</th>
+                    <th>时间</th>
+                    <th>地点</th>
+                    <th>物品类型</th>
+                    <th>物品简介</th>
+                </tr>
+                <tr>
+                    <td>苹果电脑</td>
+                    <td>12.25</td>
+                    <td>教学F楼</td>
+                    <td>电子产品</td>
+                    <td>无</td>
+                </tr>
+				<tr>
+                    <td>苹果电脑</td>
+                    <td>12.25</td>
+                    <td>教学F楼</td>
+                    <td>电子产品</td>
+                    <td>无</td>
+                </tr>
+				<tr>
+                    <td>苹果电脑</td>
+                    <td>12.25</td>
+                    <td>教学F楼</td>
+                    <td>电子产品</td>
+                    <td>无</td>
+                </tr>
+				<tr>
+                    <td>苹果电脑</td>
+                    <td>12.25</td>
+                    <td>教学F楼</td>
+                    <td>电子产品</td>
+                    <td>无</td>
+                </tr>
+				<tr>
+                    <td>苹果电脑</td>
+                    <td>12.25</td>
+                    <td>教学F楼</td>
+                    <td>电子产品</td>
+                    <td>无</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="font-size: large; font-weight: bold">已发布招领信息</div>
+        <div class="panel-body">
+            <table id="found" class="table">
+                <tbody>
+                <tr>
+                    <th>物品名称</th>
+                    <th>时间</th>
+                    <th>地点</th>
+                    <th>物品类型</th>
+                    <th>物品简介</th>
+                </tr>
+                <tr>
+                    <td>苹果电脑</td>
+                    <td>12.25</td>
+                    <td>教学F楼</td>
+                    <td>电子产品</td>
+                    <td>无</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

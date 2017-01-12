@@ -17,7 +17,7 @@ router.get('/homepage', function (req, res) {
                 console.log('get activity err:' + err) ;
                 return ;
             }
-            console.log(result);
+            //console.log(result);
             if(result)
             {
                 res.render('home',{activityArr:result});

@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="/stylesheets/table.css">
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
+	<script src="/javascripts/lost.js"></script>
     <style>
         body {
             text-align: center;
@@ -80,7 +81,7 @@
 
 <div id="center">
     <div class="panel panel-default">
-        <div class="panel-heading" style="font-size: large; font-weight: bold; text-align: center;">失物信息</div>
+        <div class="panel-heading" style="font-size: large; font-weight: bold; text-align: center;">失物招领</div>
         <div class="panel-body">
             <div class="pull-right">
                 <div class="btn-group">
@@ -94,7 +95,8 @@
             <div class="table-container" id="lost">
                 <table class="table table-filter">
                     <tbody>
-                    <tr data-status="pagado">
+					 <% for(var i = 0;i < lostFoundArr.length;i++){%>
+                    <tr data-status="pagado" id="<%=unescape(lostFoundArr[i].announce_id)%>" onclick="lost_info(this)">
                         <td></td>
                         <td>
                             <a href="javascript:;" class="star">
@@ -104,115 +106,19 @@
                         <td>
                             <div class="media">
                                 <a href="#" class="pull-left">
-                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                         class="media-photo">
+                                    <img src="<%=unescape(lostFoundArr[i].img)%>" class="media-photo">
                                 </a>
                                 <div class="media-body">
-                                    <span class="media-meta pull-right">December 13, 2016</span>
-                                    <h4 class="title">保温水杯
-                                        <span class="pull-right pagado">方小花</span>
+                                    <span class="media-meta pull-right"><%=unescape(lostFoundArr[i].time)%></span>
+                                    <h4 class="title"><%=unescape(lostFoundArr[i].name)%>
+                                        <span class="pull-right pagado"><%=unescape(lostFoundArr[i].place)%></span>
                                     </h4>
-                                    <p class="summary">整体呈粉色，瓶盖呈黑色，几乎无磨损。。。</p>
+                                    <p class="summary"><%=unescape(lostFoundArr[i].intro)%></p>
                                 </div>
                             </div>
                         </td>
                     </tr>
-                    <tr data-status="pendiente">
-                        <td></td>
-                        <td>
-                            <a href="javascript:;" class="star">
-                                <i class="glyphicon glyphicon-star"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <div class="media">
-                                <a href="#" class="pull-left">
-                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                         class="media-photo">
-                                </a>
-                                <div class="media-body">
-                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                    <h4 class="title">
-                                        Lorem Impsum
-                                        <span class="pull-right pendiente">(Pendiente)</span>
-                                    </h4>
-                                    <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="cancelado">
-                        <td></td>
-                        <td>
-                            <a href="javascript:;" class="star">
-                                <i class="glyphicon glyphicon-star"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <div class="media">
-                                <a href="#" class="pull-left">
-                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                         class="media-photo">
-                                </a>
-                                <div class="media-body">
-                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                    <h4 class="title">
-                                        Lorem Impsum
-                                        <span class="pull-right cancelado">(Cancelado)</span>
-                                    </h4>
-                                    <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="pagado">
-                        <td></td>
-                        <td>
-                            <a href="javascript:;" class="star star-checked">
-                                <i class="glyphicon glyphicon-star"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <div class="media">
-                                <a href="#" class="pull-left">
-                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                         class="media-photo">
-                                </a>
-                                <div class="media-body">
-                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                    <h4 class="title">
-                                        Lorem Impsum
-                                        <span class="pull-right pagado">(Pagado)</span>
-                                    </h4>
-                                    <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr data-status="pendiente">
-                        <td></td>
-                        <td>
-                            <a href="javascript:;" class="star">
-                                <i class="glyphicon glyphicon-star"></i>
-                            </a>
-                        </td>
-                        <td>
-                            <div class="media">
-                                <a href="#" class="pull-left">
-                                    <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg"
-                                         class="media-photo">
-                                </a>
-                                <div class="media-body">
-                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                    <h4 class="title">
-                                        Lorem Impsum
-                                        <span class="pull-right pendiente">(Pendiente)</span>
-                                    </h4>
-                                    <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+					<%} %>
                     </tbody>
                 </table>
             </div>

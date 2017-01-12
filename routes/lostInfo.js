@@ -4,10 +4,10 @@ var router=express.Router();
 
 router.get('/lostInfo', function (req, res) {
     var announce_id=req.session.announce_id;
-    console.log('get activity err:' + announce_id) ;
+    console.log('get activity err:' + announce_id);
     //var account_id=req.session.user_id;
     //var page=req.body.page;
-    var selectSql="select announce_id,name,date_format(time,'%Y-%m-%d') as time,place,type,intro,get,img from lostFound where announce_id="+announce_id;
+    var selectSql="select announce_id,name,date_format(time,'%Y-%m-%d') as time,place,type,intro,gets,img,coord from lostFound where announce_id="+"'"+escape(announce_id)+"'";
     globalConnection.query(selectSql,function(err,result,fields){
         if(err){
             console.log('get announce err:' + err) ;
@@ -16,7 +16,7 @@ router.get('/lostInfo', function (req, res) {
         //console.log(result);
         if(result)
         {
-            res.render('lostInfo',{lostInfo:result});
+            res.render('lost_detail',{lostInfo:result});
             req.session.reciver_id=result[0].announce_id;
         }
         else

@@ -84,31 +84,31 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="font-size: large; font-weight: bold">发布失物信息</div>
         <div class="panel-body">
-            <form class="form-horizontal" enctype="multipart/form-data">
+            <form class="form-horizontal" enctype="multipart/form-data" method="post" action="/releaseLost">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="name">物品名称</label>
                         <div class="col-md-6">
-                            <input id="name" class="form-control input-md" type="text" required="required">
+                            <input id="name" name="name" class="form-control input-md" type="text" required="required">
                         </div>
                     </div>
 
                     <div class="form-group registration-date">
                         <label class="col-md-4 control-label" for="date">时间</label>
                         <div class="col-md-4 registration-date-time">
-                            <input id="date" class="form-control" type="date">
+                            <input id="date" name="date" class="form-control" type="date">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="address">地点</label>
                         <div class="col-md-6">
-                            <input id="address" class="form-control input-md" type="text">
+                            <input id="address" name="address" class="form-control input-md" type="text">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="bonus">悬赏分</label>
                         <div class="col-md-6">
-                            <input id="bonus" class="form-control input-md" type="text" style="width:100px">
+                            <input id="bonus" name="bonus" class="form-control input-md" type="text" style="width:100px">
                         </div>
                     </div>
 
@@ -117,8 +117,8 @@
                         <label class="col-md-4 control-label" for="type">类型</label>
                         <div class="col-md-4">
                             <select id="type" name="type" class="form-control">
-                                <option value="1">lost</option>
-                                <option value="2">found</option>
+                                <option value="lost">lost</option>
+                                <option value="found">found</option>
                             </select>
                         </div>
                     </div>
@@ -142,9 +142,10 @@
 					<!-- map -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="description">地图标识</label>
-						<div class="preview col-md-6" id="map" name="map" style="height:300px; width:480px;"></div>
+							<input type="text" name ="map" id="map" style="display:none;">
+						<div class="preview col-md-6" id="maps" name="maps" style="height:300px; width:480px;"></div>
 						<script type="text/javascript"> 
-							var map = new BMap.Map("map");          // 创建地图实例  
+							var map = new BMap.Map("maps");          // 创建地图实例  
 							var point = new BMap.Point(121.221, 31.292);  // 创建点坐标  
 							map.centerAndZoom(point, 20);                 // 初始化地图，设置中心点坐标和地图级别
 							var marker = new BMap.Marker(point);        // 创建标注    
@@ -158,12 +159,13 @@
 							marker.addEventListener("dragend", function(e){    
 							//alert("当前位置：" + e.point.lng + ", " + e.point.lat);
 							var coord = e.point.lng+','+e.point.lat; // 存放位置坐标
+							document.getElementById("map").value=coord;
 							});
 						</script>
                     </div>
 
                     <div class="col-md-4 col-md-offset-4">
-                        <button class="btn btn-primary btn-lg" type="submit" onclick="createLost()" disabled="disabled">确认</button>
+                        <button class="btn btn-primary btn-lg" type="submit">确认</button>
                         <button class="btn btn-primary btn-lg col-md-offset-5" type="reset">重置</button>
                     </div>
 

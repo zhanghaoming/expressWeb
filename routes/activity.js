@@ -50,7 +50,7 @@ router.get('/activity', function (req, res) {
 router.post('/activity', function(req, res) {
     //varA=req.body.activity_id;
     req.session.activity_id = req.body.activity_id;
-    console.log(req.session.activity_id);
+    //console.log(req.session.activity_id);
     res.send('ok');
 });
 

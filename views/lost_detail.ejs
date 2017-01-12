@@ -73,21 +73,21 @@
         <div class="container-fluid">
             <div class="wrapper row">
                 <div class="preview col-md-5">
-                    <img src="http://placekitten.com/400/252"/>
+                    <img src="<%=unescape(lostInfo[0].img)%>"/>
                 </div>
                 <div class="details col-md-6 col-md-offset-1">
-                    <h1 class="lost-title">保温水杯</h1>
+                    <h1 class="lost-title"><%=unescape(lostInfo[0].name)%></h1>
                     <h2 class="lost-owner">发布人:<span>方小花</span></h2>
-                    <h3 class="time">遗失时间： <span>2016-12-25</span></h3>
-                    <h3 class="address">遗失地点：<span>同济大学嘉定校区教学F楼</span></h3>
-                    <h3 class="type">所属类型：<span>生活用品</span></h3>
+                    <h3 class="time">遗失时间： <span><%=unescape(lostInfo[0].time)%></span></h3>
+                    <h3 class="address">遗失地点：<span><%=unescape(lostInfo[0].place)%></span></h3>
+                    <h3 class="type">所属类型：<span><%=unescape(lostInfo[0].type)%></span></h3>
                     <h3 class="bonus">悬赏分：<span>3</span></h3>
 					<!-- map -->
 					<h3 class="bonus" for="description">地图标识：</h3>
 					<div class="" id="map" name="map" style="height:300px; width:480px;"></div>
 					<script type="text/javascript"> 
 						var map = new BMap.Map("map");          // 创建地图实例  
-						var point = new BMap.Point(121.221, 31.292);  // 创建点坐标  
+						var point = new BMap.Point(<%=unescape(lostInfo[0].coord)%>);  // 创建点坐标  
 						map.centerAndZoom(point, 20);                 // 初始化地图，设置中心点坐标和地图级别
 						var marker = new BMap.Marker(point);        // 创建标注    
 						map.addOverlay(marker);                     // 将标注添加到地图中
@@ -95,23 +95,23 @@
 						map.addControl(new BMap.NavigationControl());        
 						map.addControl(new BMap.MapTypeControl());
 						//**********************************************
-						marker.enableDragging();    
-						marker.addEventListener("dragend", function(e){    
-						var coord = e.point.lng+','+e.point.lat; // 存放位置坐标
-						});
+						//marker.enableDragging();    
+						//marker.addEventListener("dragend", function(e){    
+						//var coord = e.point.lng+','+e.point.lat; // 存放位置坐标
+						//});
 					</script>
 
                 </div>
             </div>
             <div class="description">
                 <h3>物品简介</h3>
-                <p>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+                <p><%=unescape(lostInfo[0].intro)%></p>
             </div>
 			
             <div class="comment-container">
                 <h3>给发布人留言</h3>
                 <div>
-                    <textarea class="form-control col-md-8" rows="3" id="comment">只有发布人可见哦...</textarea>
+                    <textarea class="form-control col-md-8" rows="3" id="comment" placeholder="此留言近楼主可见..."></textarea>
                 </div>
                 <button class="btn btn-primary btn-lg pull-right" style="margin-top:10px" onclick="createLostComment()" type="submit">发送</button>
                 <table class="table">
