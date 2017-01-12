@@ -22,6 +22,7 @@ function details_info(obj)
         });
 }
 
+
 function createComment1()
 {
 	var content = $("#comment").val();

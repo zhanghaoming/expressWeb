@@ -5,10 +5,10 @@ var router=express.Router();
 router.get('/activity', function (req, res) {
     //var activity_id=varA;
     var activity_id=req.session.activity_id;
-    console.log('get activity err:' + activity_id) ;
+    //console.log('get activity err:' + activity_id) ;
     //var account_id=req.session.user_id;
     //var page=req.body.page;
-    var selectSql="select name,date_format(time,'%Y-%m-%d') as time,place,intro,type,num_people,img from activity where activity_id="+activity_id;
+    var selectSql="select name,date_format(time,'%Y-%m-%d') as time,place,intro,type,num_people,img from activity where activity_id="+escape(activity_id);
     globalConnection.query(selectSql,function(err,result,fields){
         if(err){
             console.log('get activity err:' + err) ;
@@ -20,7 +20,7 @@ router.get('/activity', function (req, res) {
             //res.render('activity',{activity:result});
             //res.render('homepage',{activity:"ok"});
             var activity_info=result;
-            var selectSql="select content,comment_id,username from comment where activity_id="+activity_id;
+            var selectSql="select content,comment_id,username from comment where activity_id="+escape(activity_id);
             globalConnection.query(selectSql,function(err,result,fields){
                 if(err){
                     console.log('err:' + err) ;

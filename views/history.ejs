@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheets/index.css">
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
+	<script src="/javascripts/lost.js"></script>
     <style>
         body {
             text-align: center;
@@ -21,6 +22,9 @@
             width: 1000px;
             height: 500px;
         }
+		th{
+			text-align: center;
+		}
     </style>
 </head>
 
@@ -80,7 +84,7 @@
     <div class="panel panel-default">
         <div class="panel-heading" style="font-size: large; font-weight: bold">已发布活动信息</div>
         <div class="panel-body">
-            <table id="activity" class="table">
+            <table id="activity" class="table table-hover">
                 <tbody>
                 <tr>
                     <th>活动名称</th>
@@ -89,21 +93,23 @@
                     <th>活动类型</th>
                     <th>活动简介</th>
                 </tr>
-                <tr>
-                    <td>圣诞嘉年华</td>
-                    <td>12.25</td>
-                    <td>新天地一条街</td>
-                    <td>校级</td>
-                    <td>校学生会国际部</td>
+                <% for(var i = 0;i < activityS.length;i++){%>
+                <tr data-status="pagado" id="<%=unescape(activityS[i].activity_id)%>" onclick="details_info(this)">
+                    <td><%=unescape(activity_Content[i].name)%></td>
+                    <td><%=unescape(activity_Content[i].time)%></td>
+                    <td><%=unescape(activity_Content[i].place)%></td>
+                    <td><%=unescape(activity_Content[i].type)%></td>
+                    <td><%=unescape(activity_Content[i].intro)%></td>
                 </tr>
+				<%} %>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading" style="font-size: large; font-weight: bold">已发布失物信息</div>
+        <div class="panel-heading" style="font-size: large; font-weight: bold">已发布失物招领信息</div>
         <div class="panel-body">
-            <table id="lost" class="table">
+            <table id="lost" class="table table-hover">
                 <tbody>
                 <tr>
                     <th>物品名称</th>
@@ -112,46 +118,20 @@
                     <th>物品类型</th>
                     <th>物品简介</th>
                 </tr>
-                <tr>
-                    <td>苹果电脑</td>
-                    <td>12.25</td>
-                    <td>教学F楼</td>
-                    <td>电子产品</td>
-                    <td>无</td>
+				<% for(var i = 0;i < lostFoundS.length;i++){%>
+                <tr data-status="pagado" id="<%=unescape(lostFoundS[i].announce_id)%>" onclick="lost_info(this)">
+                    <td><%=unescape(lostFound_Content[i].name)%></td>
+                    <td><%=unescape(lostFound_Content[i].time)%></td>
+                    <td><%=unescape(lostFound_Content[i].place)%></td>
+                    <td><%=unescape(lostFound_Content[i].type)%></td>
+                    <td><%=unescape(lostFound_Content[i].intro)%></td>
                 </tr>
-				<tr>
-                    <td>苹果电脑</td>
-                    <td>12.25</td>
-                    <td>教学F楼</td>
-                    <td>电子产品</td>
-                    <td>无</td>
-                </tr>
-				<tr>
-                    <td>苹果电脑</td>
-                    <td>12.25</td>
-                    <td>教学F楼</td>
-                    <td>电子产品</td>
-                    <td>无</td>
-                </tr>
-				<tr>
-                    <td>苹果电脑</td>
-                    <td>12.25</td>
-                    <td>教学F楼</td>
-                    <td>电子产品</td>
-                    <td>无</td>
-                </tr>
-				<tr>
-                    <td>苹果电脑</td>
-                    <td>12.25</td>
-                    <td>教学F楼</td>
-                    <td>电子产品</td>
-                    <td>无</td>
-                </tr>
+				<%} %>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default" style="display:none">
         <div class="panel-heading" style="font-size: large; font-weight: bold">已发布招领信息</div>
         <div class="panel-body">
             <table id="found" class="table">

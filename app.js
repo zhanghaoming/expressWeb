@@ -39,7 +39,7 @@ secret: 'zdagfagfad'
 }));
 
 app.use('/', index);
-app.use('/users', users);
+//app.use('/users', users);
 app.use(require('./routes/login'));
 app.use(require('./routes/register'));
 

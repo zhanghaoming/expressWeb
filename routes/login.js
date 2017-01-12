@@ -14,7 +14,7 @@ port:'3306'
 router.post('/login',function(req,res)
 {
 	var data=req.body;
-	console.log(req.body);
+	//console.log(req.body);
 	var selectSql = "select * from account where email="+"'"+escape(data.Username)+"'";
 	globalConnection.query(selectSql,function(err,result,fields){
 		if(err){
@@ -26,7 +26,7 @@ router.post('/login',function(req,res)
                 //cookie&session
                 req.session.sign = true;
                 req.session.user = req.body.Username;
-                console.log(result[0]);
+                //console.log(result[0]);
                 req.session.account_id = result[0]['account_id'];
                 req.session.activity_page = 1;
 
@@ -52,10 +52,10 @@ router.post('/login',function(req,res)
 router.get('/login', function (req, res) {
 	if(req.session.user)
 	{
-		console.log(req.session.account_id);
+		//console.log(req.session.account_id);
 	    for(var key in req.cookies)
 		{
-			console.log('cookie: '+key+' '+req.cookies[key]);
+			//console.log('cookie: '+key+' '+req.cookies[key]);
 			
 		}
 		res.render('index',
@@ -78,7 +78,7 @@ router.get('/session',function(req,res,next)
 	{
 	    for(var key in req.cookies)
 		{
-			console.log('cookie: '+key+' '+req.cookies[key]);
+			//console.log('cookie: '+key+' '+req.cookies[key]);
 		}
 		res.send(req.session.user);
 	}

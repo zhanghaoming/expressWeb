@@ -21,3 +21,25 @@ function lost_info(obj)
             }
         });
 }
+function details_info(obj)
+{
+	var activity_id=obj.id;
+	var data={'activity_id':activity_id};
+	//alert(activity_id);
+	//alert(data);
+	$.ajax({
+            type: "post",
+            url: "/activity",
+            data: data,
+            //datatype: "json",
+            //async: false,
+            error: function (data,status) {
+				//alert('err');
+                window.location.href='/activity';
+            },
+            success: function (data,status) {
+				//alert('ok');
+                window.location.href='/activity';
+            }
+        });
+}
