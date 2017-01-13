@@ -28,6 +28,7 @@ router.post('/login',function(req,res)
                 req.session.user = req.body.Username;
                 //console.log(result[0]);
                 req.session.account_id = result[0]['account_id'];
+                req.session.username = result[0]['account_name'];
                 req.session.activity_page = 1;
                 req.session.lostFound_page=1;
                 req.session.type="found";

@@ -94,11 +94,12 @@
                 <table class="table">
                     <tbody>
 					<% for(var i = 0;i < comment.length;i++){%>
-                    <tr style="height: 3cm">
+                    <tr style="height: 1.5cm">
+						<td width="20%"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" style="height:50px;width:50px;"></td>
                         <td width="20%">
                             <%=unescape(comment[i].username)%>
                         </td>
-                        <td width="80%"><%=unescape(comment[i].content)%></td>
+                        <td width="60%"><%=unescape(comment[i].content)%></td>
                     </tr>
 					<%} %>
                     </tbody>
