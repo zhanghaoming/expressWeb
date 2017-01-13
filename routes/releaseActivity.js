@@ -67,9 +67,9 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	    }
 	    if (extName.length === 0) 
 	    {
-	        res.send({
-	            code: 202,
-	            msg: '只支持png和jpg格式图片'
+	        res.render('release_activity',{
+	         
+	            errmsg: '只支持png和jpg格式!'
 	        });
 	        return;
 	    }
@@ -113,7 +113,7 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 			{
 		  		globalConnection.rollback(function()
 		  		{
-		  			res.send(404);
+		  			res.send(404,'数据库连接失败');
 		  			console.log(err);
 		  		}) ;
 		  		return ;
@@ -133,20 +133,22 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 					{
 						globalConnection.rollback(function()
 				  		{
-				  			res.send(404);
+				  			res.send(404,'数据库连接失败');
 				  			console.log(err);
 				  		}) ;
 				  		return ;
 					}
 				})
 			}   
-			res.sendStatus(200);
+			res.redirect('/homepage');
 		});
 })
 
 router.get('/release_activity',function(req,res)
 {
 
-	res.render('release_activity');
+	res.render('release_activity',{
+	            errmsg: ''
+	        });
 })
 module.exports = router;
