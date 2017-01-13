@@ -13,12 +13,12 @@ router.post('/message', function (req, res) {
             console.log('insert into message err:' + err);
             return;
         }
-        console.log(result);
+        //console.log(result);
         if (result) {
             var reciver_id = result[0].account_id;
-            console.log('reciver_id:' + reciver_id);
-            console.log('reciver_id::::' + result[0]);
-            console.log(result);
+            //console.log('reciver_id:' + reciver_id);
+            //console.log('reciver_id::::' + result[0]);
+            //console.log(result);
             var insertSql = "insert into message(content,sender_id,receiver_id,sender_name,announce_id) value(" + "'" + escape(content) + "'" + "," + escape(sender_id) + "," + escape(reciver_id) + "," + "'" + escape(sender_name) + "'" +","+escape(announce_id)+ ")";
             globalConnection.query(insertSql, function (err, result, fields) {
                 if (err) {

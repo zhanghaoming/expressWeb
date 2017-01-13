@@ -68,3 +68,63 @@ function changeTel()
             }
         });
 }
+//**********************next/last for activity*****************************
+function nextA()
+{
+	var page = $("#activity_page").val();
+	var count = $("#count").val();
+	if(page<count){
+		page++;
+		//document.getElementById("activity_page").value=page;
+		var data = {"page":page};
+		//alert(page);
+		$.ajax({
+				type: "post",
+				url: "/homepage",
+				data: data,
+				error: function (data,status) {
+					//window.location.href='/homepage';
+				},
+				success: function (data,status) {
+					//alert(data);
+					//alert("修改成功");
+					if("ok"==data)
+					{
+						window.location.href='/homepage';
+					}
+				}
+			});
+	}
+	else{
+		alert("最后一页");
+	}
+}
+function lastA()
+{
+	var page = $("#activity_page").val();
+	if(page>1){
+		page=page-1;
+		//document.getElementById("activity_page").value=page;
+		var data = {"page":page};
+		//alert(page);
+		$.ajax({
+				type: "post",
+				url: "/homepage",
+				data: data,
+				error: function (data,status) {
+					//window.location.href='/homepage';
+				},
+				success: function (data,status) {
+					//alert(data);
+					//alert("修改成功");
+					if("ok"==data)
+					{
+						window.location.href='/homepage';
+					}
+				}
+			});
+	}
+	else{
+		alert("第一页");
+	}
+}

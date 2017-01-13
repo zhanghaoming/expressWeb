@@ -29,6 +29,8 @@ router.post('/login',function(req,res)
                 //console.log(result[0]);
                 req.session.account_id = result[0]['account_id'];
                 req.session.activity_page = 1;
+                req.session.lostFound_page=1;
+                req.session.type="found";
 
                 res.cookie('user', req.body.Username, {
                     maxAge: 1000 * 1000, httpOnly: true
@@ -87,4 +89,11 @@ router.get('/session',function(req,res,next)
 		res.send('no session');
 	}
 })
+
+router.get('/signout', function (req, res) {
+    res.clearCookie();
+    req.session.destroy();
+    res.redirect('/');
+});
+
 module.exports = router;

@@ -70,13 +70,13 @@
                 </div>
                 <div class="details col-md-6 col-md-offset-1">
                     <h3 class="activity-title"><%=unescape(activity[0].name)%></h3>
-                    <p class="vote"><strong><%=activity[0].num_people%></strong>的人已经参加！ <strong>(87 likes)</strong></p>
+                    <p class="vote" style="display:none;"><strong><%=activity[0].num_people%></strong>的人已经参加！ <strong>(87 likes)</strong></p>
                     <h4 class="time">时间： <span><%=unescape(activity[0].time)%></span></h4>
                     <h4 class="address">地点：<span><%=unescape(activity[0].place)%></span></h4>
                     <h5 class="type">标签：<span><%=unescape(activity[0].type)%></span></h5>
                     <div class="action">
-                        <button class="add-to-cart btn btn-default" type="button">感兴趣</button>
-                        <button class="add-to-cart btn btn-default" type="button">要参加</button>
+                        <input class="add-to-cart btn btn-default" type="button" value="<%=states%>">
+                        <!--<button class="add-to-cart btn btn-default" type="button">要参加</button>-->
                     </div>
                 </div>
             </div>

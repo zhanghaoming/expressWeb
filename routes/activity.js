@@ -4,11 +4,10 @@ var router=express.Router();
 //global.varA=0;
 router.get('/activity', function (req, res) {
     if (req.session.sign) {
-        //var activity_id=varA;
+        var sd = require('silly-datetime');
+        var curdate=sd.format(new Date(), 'YYYY-MM-DD');
+
         var activity_id = req.session.activity_id;
-        //console.log('get activity err:' + activity_id) ;
-        //var account_id=req.session.user_id;
-        //var page=req.body.page;
         var selectSql = "select name,date_format(time,'%Y-%m-%d') as time,place,intro,type,num_people,img from activity where activity_id=" + escape(activity_id);
         globalConnection.query(selectSql, function (err, result, fields) {
             if (err) {
@@ -28,12 +27,15 @@ router.get('/activity', function (req, res) {
                     }
                     //console.log(result);
                     if (result) {
-                        res.render('activity_detail', {activity: activity_info, comment: result});
-                        //res.send("insert");
+                        if(activity_info[0].time < curdate) {
+                            res.render('activity_detail', {activity: activity_info, comment: result,states:"已过期"});
+                        }
+                        else
+                        {
+                            res.render('activity_detail', {activity: activity_info, comment: result,states:"进行中"});
+                        }
                     }
                     else {
-                        //res.send('unknown account');
-                        //res.render('error');
                         res.send("error");
                     }
                 });

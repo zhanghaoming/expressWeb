@@ -24,9 +24,9 @@ router.get('/lostInfo', function (req, res) {
                         return;
                     }
                     //console.log(result);
-                    if (result) {
+                    if (result[0]) {
                         if (result[0].receiver_id == req.session.account_id) {
-                            res.render('lost_detail', {lostInfo: lostinfo, message: result});
+                            res.render('lost_detail', {lostInfo: lostinfo, message: result,display:""});
                         }
                         else {
                             var messageInfo = [];
@@ -41,13 +41,13 @@ router.get('/lostInfo', function (req, res) {
                             }
                             setTimeout(function () {
                                 //console.log("loss:"+messageInfo);
-                                res.render('lost_detail', {lostInfo: lostinfo, message: messageInfo});
+                                res.render('lost_detail', {lostInfo: lostinfo, message: messageInfo,display:"none"});
                             }, 500);
                             //res.render('lost_detail', {lostInfo: lostinfo, message: []});
                         }
                     }
                     else {
-                        res.send("error");
+                        res.render('lost_detail', {lostInfo: lostinfo, message: [],display:"none"});
                     }
                 });
             }
@@ -71,6 +71,25 @@ router.post('/lostInfo', function(req, res) {
     {
         res.redirect('/');
     }
+});
+
+router.post('/changeState', function(req, res) {
+    var state=req.body.state;
+    var announce_id=req.session.announce_id;
+    var updateSql="update lostFound set gets="+"'"+escape(state)+"'"+"where announce_id="+"'"+escape(announce_id)+"'";
+    globalConnection.query(updateSql, function (err, result, fields) {
+        if (err) {
+            console.log('err:' + err);
+            return;
+        }
+        //console.log(result);
+        if (result) {
+            res.send("ok");
+        }
+        else {
+            res.send("error");
+        }
+    });
 });
 
 module.exports = router;
