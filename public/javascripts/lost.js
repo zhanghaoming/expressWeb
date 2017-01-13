@@ -43,3 +43,28 @@ function details_info(obj)
             }
         });
 }
+
+function sendMessage()
+{
+	var message = $("#message").val();
+	alert(message);
+    var data = {"message":message};
+	//alert(content);
+	$.ajax({
+            type: "post",
+            url: "/message",
+            data: data,
+            error: function (data,status) {
+                //window.location.href='/lostInfo';
+				//alert('err');
+            },
+            success: function (data,status) {
+				//alert('success');
+				if("insert"==data)
+                {
+					//alert('insert');
+					window.location.href='/lostInfo';
+				}
+            }
+        });
+}

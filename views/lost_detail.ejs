@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/stylesheets/lost_detail.css">
     <script src="/javascripts/jquery.min.js"></script>
     <script src="/javascripts/bootstrap.min.js"></script>
-    <script src="/javascripts/lost_detail.js"></script>
+    <script src="/javascripts/lost.js"></script>
 	<script type="text/javascript" language="javascript" src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=TbLC35kAGkxnk1bfocGR6TI8X1sgLCRz"></script>
 </head>
@@ -33,17 +33,17 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html" class="">首页</a></li>
-                        <li><a href="index.html">同城活动</a></li>
-                        <li><a href="release_activity.html">发布活动</a></li>
+                        <li class="active"><a href="/homepage" class="">首页</a></li>
+                        <li><a href="/homepage">同城活动</a></li>
+                        <li><a href="/release_activity">发布活动</a></li>
                         <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">失物<span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">失物招领<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="lost.html">失物列表</a></li>
-                                <li><a href="release_lost.html">发布失物</a></li>
+                                <li><a href="/lostFound">失物招领列表</a></li>
+                                <li><a href="/release_lost">发布失物招领</a></li>
                             </ul>
                         </li>
-                        <li class=" dropdown">
+                        <li class=" dropdown" style="display:none">
                             <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">招领<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="found.html">招领信息</a></li>
@@ -53,13 +53,13 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="personal.html">个人信息</a></li>
-                                <li><a href="history.html">已发布信息</a></li>
+                                <li><a href="/personal">个人信息</a></li>
+                                <li><a href="/history">已发布信息</a></li>
                             </ul>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                        <li class=""><a href="#">注销</a></li>
+                        <li class=""><a href="/signout">注销</a></li>
                     </ul>
                 </div>
             </div>
@@ -111,12 +111,19 @@
             <div class="comment-container">
                 <h3>给发布人留言</h3>
                 <div>
-                    <textarea class="form-control col-md-8" rows="3" id="comment" placeholder="此留言近楼主可见..."></textarea>
+                    <textarea class="form-control col-md-8" rows="3" id="message" placeholder="此留言仅楼主可见..."></textarea>
                 </div>
-                <button class="btn btn-primary btn-lg pull-right" style="margin-top:10px" onclick="createLostComment()" type="submit">发送</button>
+                <button class="btn btn-primary btn-lg pull-right" style="margin-top:10px" onclick="sendMessage()" type="submit">发送</button>
                 <table class="table">
                     <tbody>
-
+					<% for(var i = 0;i < message.length;i++){%>
+					<tr style="height: 3cm">
+						<td width="20%">
+                            <%=unescape(message[i].sender_name)%>
+                        </td>
+                        <td width="80%"><%=unescape(message[i].content)%></td>
+					</tr>
+					<%} %>
                     </tbody>
                 </table>
             </div>

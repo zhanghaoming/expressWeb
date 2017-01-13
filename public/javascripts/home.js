@@ -43,3 +43,28 @@ function createComment1()
             }
         });
 }
+
+function changeTel()
+{
+	var tel = $("#tel").val();
+    var data = {"tel":tel};
+	//alert(tel);
+	$.ajax({
+            type: "post",
+            url: "/personal",
+            data: data,
+            error: function (data,status) {
+                //window.location.href='/personal';
+				alert("修改失败");
+            },
+            success: function (data,status) {
+				//alert(data);
+				//alert("修改成功");
+				if("update"==data)
+                {
+					alert("修改成功");
+					window.location.href='/personal';
+				}
+            }
+        });
+}

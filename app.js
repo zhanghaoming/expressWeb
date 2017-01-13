@@ -56,6 +56,7 @@ app.use(require('./routes/releaseActivity'));
 app.use(require('./routes/releaseLost'));
 app.use(require('./routes/activityDetail'));
 app.use(require('./routes/personal'));
+app.use(require('./routes/history'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

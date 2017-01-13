@@ -36,4 +36,9 @@ router.get('/homepage', function (req, res) {
     }
 });
 
+router.get('/signout', function (req, res) {
+    req.session.sign = false;
+    res.redirect('/');
+});
+
 module.exports = router;
