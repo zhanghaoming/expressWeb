@@ -23,7 +23,7 @@ router.post('/test',multipartMiddleware,function(req,res)
 router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 {
 	//console.log(req.body);
-	var storePath;
+	var storePath='/images/upload/default_activity.jpg';
 	if(!req.session.user)
 	{
 		res.redirect('/');
@@ -33,7 +33,8 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 		res.render('/activity');
 	}
 	//图片上传
-	if(req.files.img.name=='')
+	console.log(req.files.img.name);
+	if(!req.files.img.name)
 	{
 		storePath='/images/default_activity.jpg';
 	}
@@ -86,8 +87,8 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	        });
 	     	storePath='/images/upload/'+currentUser+avatarName;
 	    }
-
-	    var insertSql="insert into activity(name,time,place,intro,type,img) values ("
+	}
+	var insertSql="insert into activity(name,time,place,intro,type,img) values ("
 	    + "'" + escape(Activity.Name) 
 		+ "'" 
 		+ ","
@@ -141,7 +142,6 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 			}   
 			res.sendStatus(200);
 		});
-	}
 })
 
 router.get('/release_activity',function(req,res)

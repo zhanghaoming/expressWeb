@@ -21,18 +21,19 @@
 
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <form role="form">
+            <form role="form" method="post" action='/register'>
                 <h2>Please Sign Up <small>Welcome to the xxxxxx</small></h2>
                 <hr class="colorgraph">
 
                 <div class="form-group">
                     <input id="username1" type="text" name="name" class="form-control input-lg" placeholder="用户名" tabindex="3">
                 </div>
+
                 <div class="form-group">
                     <input id="email1" type="email" name="email" class="form-control input-lg" placeholder="邮箱" tabindex="4">
                 </div>
                 <div class="form-group">
-                    <input id="phone" type="email" name="phone" class="form-control input-lg" placeholder="手机" tabindex="8">
+                    <input id="phone" type="tel" name="phone" class="form-control input-lg" placeholder="手机" tabindex="8">
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-md-6">
@@ -46,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-
+                <font color="#FF0000"><%= status%></font>
                 <hr class="colorgraph">
                 <div class="row">
                     <div class="col-xs-12 col-md-6"><input type="submit" value="注册" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
