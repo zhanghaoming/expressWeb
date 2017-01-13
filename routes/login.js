@@ -39,12 +39,12 @@ router.post('/login',function(req,res)
             }
           else
 		  {
-                res.render('signin',{status:"密码错误哦"});
+                res.render('signin',{status:"密码错误哦!"});
           }
         }
         else
 		{
-            res.render('signin',{status:"用户不存在"});
+            res.render('signin',{status:"用户不存在!"});
 		}
     });
 
