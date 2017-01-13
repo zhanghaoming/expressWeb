@@ -39,7 +39,7 @@ secret: 'zdagfagfad'
 }));
 
 app.use('/', index);
-app.use('/users', users);
+//app.use('/users', users);
 app.use(require('./routes/login'));
 app.use(require('./routes/register'));
 
@@ -55,6 +55,8 @@ app.use(require('./routes/lostInfo'));
 app.use(require('./routes/releaseActivity'));
 app.use(require('./routes/releaseLost'));
 app.use(require('./routes/activityDetail'));
+app.use(require('./routes/personal'));
+app.use(require('./routes/history'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

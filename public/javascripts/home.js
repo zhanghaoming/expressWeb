@@ -22,6 +22,7 @@ function details_info(obj)
         });
 }
 
+
 function createComment1()
 {
 	var content = $("#comment").val();
@@ -38,6 +39,31 @@ function createComment1()
 				if("insert"==data)
                 {
 					window.location.href='/activity';
+				}
+            }
+        });
+}
+
+function changeTel()
+{
+	var tel = $("#tel").val();
+    var data = {"tel":tel};
+	//alert(tel);
+	$.ajax({
+            type: "post",
+            url: "/personal",
+            data: data,
+            error: function (data,status) {
+                //window.location.href='/personal';
+				alert("修改失败");
+            },
+            success: function (data,status) {
+				//alert(data);
+				//alert("修改成功");
+				if("update"==data)
+                {
+					alert("修改成功");
+					window.location.href='/personal';
 				}
             }
         });

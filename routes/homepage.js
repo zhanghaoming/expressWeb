@@ -17,7 +17,7 @@ router.get('/homepage', function (req, res) {
                 console.log('get activity err:' + err) ;
                 return ;
             }
-            console.log(result);
+            //console.log(result);
             if(result)
             {
                 res.render('home',{activityArr:result});
@@ -34,6 +34,12 @@ router.get('/homepage', function (req, res) {
     {
         res.redirect('/');
     }
+});
+
+router.get('/signout', function (req, res) {
+    res.clearCookie();
+    req.session.destroy();
+    res.redirect('/');
 });
 
 module.exports = router;
