@@ -4,7 +4,8 @@ exports.Name='';
 exports.Tel='';
 
 exports.init=function(body){
-	if(!(body.mail&&body.code&&body.name&&body.phone))
+	console.log(body);
+	if(!(body.email&&body.code&&body.name&&body.phone))
 	{
 		return false;
 	}

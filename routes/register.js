@@ -3,13 +3,20 @@ var router = express.Router();
 var registerProfile=require('./mymodule/classProfile');
 
 router.get('/register',function(req,res){
-	res.render('signup');
+	res.render('signup',{
+		status:''
+	});
 })
 
 router.post('/register',function(req,res){
 	var info=req.body;
-	
+	console.log(req.body);
 
+	if(req.body.code!=req.body.code2)
+	{
+		res.render('signup',{status: '两次密码不匹配!'});
+		return;
+	}
 	if(registerProfile.init(info))
 	{
 		/*res.send(registerProfile.Mail);*/
@@ -36,7 +43,7 @@ router.post('/register',function(req,res){
 			{
 		  		globalConnection.rollback(function()
 		  		{
-		  			res.render('register',{title: 'false'})
+		  			res.render('signup',{status: '该邮箱已被注册!'});
 		  			console.log(err);
 		  		}) ;
 		  		return ;
@@ -45,13 +52,12 @@ router.post('/register',function(req,res){
 	        {
 	        	console.log(result);
 			}   
-			res.redirect('/',{status: ''})
+			res.redirect('/');
 		});
 	}
 	else
 	{
-		res.render('register',{title: 'incomplete information'});
-
+		res.render('signup',{status: '用户信息不完整!'});
 	}
 })
 

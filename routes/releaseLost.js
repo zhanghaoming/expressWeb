@@ -19,7 +19,7 @@ router.post('/releaseLost',multipartMiddleware,function(req, res)
 		res.send(404);
 	}
 	//图片上传
-	if(req.files.img.name=='')
+	if(!req.files.img.name)
 	{
 		storePath='/images/default_lost.jpg';
 	}
@@ -50,7 +50,7 @@ router.post('/releaseLost',multipartMiddleware,function(req, res)
         if (extName.length === 0) {
             res.send({
                 code: 202,
-                msg: '只支持png和jpg格式图片'
+                msg: '只支持png和jpg格式!'
             });
             return;
         }
@@ -67,7 +67,9 @@ router.post('/releaseLost',multipartMiddleware,function(req, res)
             });
             storePath = '/images/upload/' + currentUser + avatarName;
         }
-            var insertSql = "insert into lostFound(name,time,place,intro,coord,type,img) values ("
+           
+    }
+     var insertSql = "insert into lostFound(name,time,place,intro,coord,type,img) values ("
                 + "'" + escape(Activity.Name)
                 + "'"
                 + ","
@@ -116,15 +118,13 @@ router.post('/releaseLost',multipartMiddleware,function(req, res)
                         }
                     })
                 }
-                res.sendStatus(200);
+                res.redirect('/lostFound');
             });
-        }
-
 
 })
 
 router.get('/release_lost',function(req,res)
 {
-	res.render('release_lost');
+	res.render('release_lost',{errmsg:''});
 })
 module.exports = router;

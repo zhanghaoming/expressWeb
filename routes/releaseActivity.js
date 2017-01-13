@@ -23,7 +23,7 @@ router.post('/test',multipartMiddleware,function(req,res)
 router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 {
 	//console.log(req.body);
-	var storePath;
+	var storePath='/images/upload/default_activity.jpg';
 	if(!req.session.user)
 	{
 		res.redirect('/');
@@ -33,7 +33,8 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 		res.render('/activity');
 	}
 	//图片上传
-	if(req.files.img.name=='')
+	console.log(req.files.img.name);
+	if(!req.files.img.name)
 	{
 		storePath='/images/default_activity.jpg';
 	}
@@ -66,9 +67,9 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	    }
 	    if (extName.length === 0) 
 	    {
-	        res.send({
-	            code: 202,
-	            msg: '只支持png和jpg格式图片'
+	        res.render('release_activity',{
+	         
+	            errmsg: '只支持png和jpg格式!'
 	        });
 	        return;
 	    }
@@ -86,8 +87,8 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 	        });
 	     	storePath='/images/upload/'+currentUser+avatarName;
 	    }
-
-	    var insertSql="insert into activity(name,time,place,intro,type,img) values ("
+	}
+	var insertSql="insert into activity(name,time,place,intro,type,img) values ("
 	    + "'" + escape(Activity.Name) 
 		+ "'" 
 		+ ","
@@ -112,7 +113,7 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 			{
 		  		globalConnection.rollback(function()
 		  		{
-		  			res.send(404);
+		  			res.send(404,'数据库连接失败');
 		  			console.log(err);
 		  		}) ;
 		  		return ;
@@ -132,21 +133,22 @@ router.post('/releaseActivtiy',multipartMiddleware,function(req, res)
 					{
 						globalConnection.rollback(function()
 				  		{
-				  			res.send(404);
+				  			res.send(404,'数据库连接失败');
 				  			console.log(err);
 				  		}) ;
 				  		return ;
 					}
 				})
 			}   
-			res.sendStatus(200);
+			res.redirect('/homepage');
 		});
-	}
 })
 
 router.get('/release_activity',function(req,res)
 {
 
-	res.render('release_activity');
+	res.render('release_activity',{
+	            errmsg: ''
+	        });
 })
 module.exports = router;
