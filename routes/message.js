@@ -5,7 +5,7 @@ var router=express.Router();
 router.post('/message', function (req, res) {
     var sender_id = req.session.account_id;
     var content = req.body.message;
-    var sender_name = req.session.user;
+    var sender_name = unescape(req.session.username);
     var announce_id=req.session.announce_id;
     var selectSql="select account_id from release_lost where announce_id="+"'"+escape(announce_id)+"'";
     globalConnection.query(selectSql, function (err, result, fields) {
