@@ -2,25 +2,23 @@
 var express=require('express');
 var router=express.Router();
 
-router.post('/rankList/:email', function (req, res) {
+router.post('/rank/:email', function (req, res) {
     var email=req.params.email;
-    console.log("email:",email);
-    var selectSql="select activity_id,name,date_format(time,'%Y-%m-%d') as time,place,type,intro,img from activity order by time desc limit "+m+","+n;
+    //console.log("email:",email);
+    var selectSql="select account_name,credit,tel from account where email="+"'"+email+"'";
     globalConnection.query(selectSql,function(err,result,fields){
         if(err){
-            console.log('get activity err:' + err) ;
+            console.log('get rank err:' + err) ;
             return ;
         }
         //console.log(result);
-        if(result)
+        if(result[0])
         {
-            res.render('home',{activityArr:result});
-            //res.render('homepage',{activity:"ok"});
+            res.send(result);
         }
         else
         {
-            //res.send('unknown account');
-            res.render('error');
+            res.send('no such a email');
         }
     }) ;
 });
