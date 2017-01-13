@@ -37,7 +37,8 @@ router.get('/homepage', function (req, res) {
 });
 
 router.get('/signout', function (req, res) {
-    req.session.sign = false;
+    res.clearCookie();
+    req.session.destroy();
     res.redirect('/');
 });
 
