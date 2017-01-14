@@ -17,7 +17,7 @@ router.get('/lostFound', function (req, res) {
                 var page=req.session.lostFound_page;
                 var page=req.session.lostFound_page;
                 var m = page*10 - 10;
-                var n = (page - 1) * 10 + 9;
+                var n = (page - 1) * 10 + 10;
                 var type=req.session.type;
                 var selectSql = "select announce_id,name,date_format(time,'%Y-%m-%d') as time,place,type,intro,gets,img from lostFound where type="+"'"+type+"'"+" and gets='NO' order by time desc limit " + m + "," + n;
                 globalConnection.query(selectSql, function (err, result, fields) {

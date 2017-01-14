@@ -19,7 +19,7 @@ router.get('/homepage', function (req, res) {
                 var page=req.session.activity_page;
                 //var page=1;
                 var m=page*10-10;
-                var n=(page-1)*10+9;
+                var n=(page-1)*10+10;
                 //console.log("rows:",m,n);
                 var selectSql="select activity_id,name,date_format(time,'%Y-%m-%d') as time,place,type,intro,img from activity order by time desc limit "+m+","+n;
                 globalConnection.query(selectSql,function(err,result,fields){
